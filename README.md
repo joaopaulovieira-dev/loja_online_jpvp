@@ -1,6 +1,6 @@
 # loja_online_jpvp
 
-Loja Online em Flutter.
+Loja Online em Flutter 18/03/2021.
 
 ## Getting Started
 
