@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "785662980050",
+    "firebase_url": "https://loja-online-jpvp-default-rtdb.firebaseio.com",
+    "project_id": "loja-online-jpvp",
+    "storage_bucket": "loja-online-jpvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785662980050:android:ccfd989402bd7c4832e20b",
+        "android_client_info": {
+          "package_name": "dev.joaopaulovieira.loja_online_jpvp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785662980050-m2fdkak5a8h9m5juj8she0in26qmlrrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAExG9o3RYmBJB7tU0l_W1pd5KPuMI22RI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785662980050-m2fdkak5a8h9m5juj8she0in26qmlrrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
