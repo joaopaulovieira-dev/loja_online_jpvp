@@ -33,7 +33,6 @@ String getErrorString(String code) {
       return 'Muitas solicitações de entrada. Tente novamente mais tarde.';
 
     case 'ERROR_OPERATION_NOT_ALLOWED':
-    case 'operation-not-allowed':
       return 'Operação não permitida.';
 
     default:
