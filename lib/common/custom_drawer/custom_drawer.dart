@@ -3,9 +3,6 @@ import 'package:loja_online_jpvp/common/custom_drawer/custom_drawer_header.dart'
 import 'package:loja_online_jpvp/common/custom_drawer/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
-  // ignore: avoid_unused_constructor_parameters
-  const CustomDrawer(PageController pageController);
-
   @override
   Widget build(BuildContext context) {
     return Drawer(

@@ -17,6 +17,7 @@ class UserManager extends ChangeNotifier {
 
   bool _loading = false;
   bool get loading => _loading;
+
   bool get isLoggedIn => user != null;
 
   Future<void> signIn({User user, Function onFail, Function onSuccess}) async {
@@ -68,8 +69,8 @@ class UserManager extends ChangeNotifier {
     if (currentUser != null) {
       final DocumentSnapshot docUser =
           await firestore.collection('users').document(currentUser.uid).get();
-      user = User.fromDocumet(docUser);
-      debugPrint(user.name);
+      user = User.fromDocument(docUser);
+
       notifyListeners();
     }
   }
