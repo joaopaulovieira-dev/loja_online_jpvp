@@ -22,7 +22,7 @@ class DrawerTile extends StatelessWidget {
         height: 70,
         child: Row(
           children: <Widget>[
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 32)),
+            const Padding(padding: EdgeInsets.symmetric(horizontal: 32)),
             Icon(
               iconData,
               size: 32,

@@ -64,8 +64,9 @@ class LoginScreen extends StatelessWidget {
                       autocorrect: false,
                       obscureText: true,
                       validator: (pass) {
-                        if (pass.isEmpty || pass.length < 6)
+                        if (pass.isEmpty || pass.length < 6) {
                           return 'Senha inválida';
+                        }
                         return null;
                       },
                     ),
@@ -82,20 +83,21 @@ class LoginScreen extends StatelessWidget {
                             : () {
                                 if (formKey.currentState.validate()) {
                                   userManager.signIn(
-                                      user: User(
-                                          email: emailController.text,
-                                          password: passController.text),
-                                      onFail: (e) {
-                                        scaffoldKey.currentState
-                                            // ignore: deprecated_member_use
-                                            .showSnackBar(SnackBar(
-                                          content: Text('Falha ao entrar: $e'),
-                                          backgroundColor: Colors.red,
-                                        ));
-                                      },
-                                      onSuccess: () {
-                                        //! FECHAR TELA DE LOGIN
-                                      });
+                                    user: User(
+                                        email: emailController.text,
+                                        password: passController.text),
+                                    onFail: (e) {
+                                      scaffoldKey.currentState
+                                          // ignore: deprecated_member_use
+                                          .showSnackBar(SnackBar(
+                                        content: Text('Falha ao entrar: $e'),
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    },
+                                    onSuccess: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  );
                                 }
                               },
                         color: Theme.of(context).primaryColor,
@@ -103,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                             Theme.of(context).primaryColor.withAlpha(100),
                         textColor: Colors.white,
                         child: userManager.loading
-                            ? CircularProgressIndicator(
+                            ? const CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation(Colors.white),
                               )
