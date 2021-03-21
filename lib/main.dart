@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
+import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,7 +22,16 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(elevation: 0),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: BaseScreen(),
+        initialRoute: '/base',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/signup':
+              return MaterialPageRoute(builder: (_) => SignUpScreen());
+            case '/base':
+            default:
+              return MaterialPageRoute(builder: (_) => BaseScreen());
+          }
+        },
       ),
     );
   }
