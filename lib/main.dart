@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loja_online_jpvp/models/products_manager.dart';
+import 'package:loja_online_jpvp/models/product_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
