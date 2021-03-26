@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/product_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
+import 'package:loja_online_jpvp/screens/product/product_screen.dart';
 import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => LoginScreen());
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
+            case '/product':
+              return MaterialPageRoute(
+                  builder: (_) => ProductScreen(settings.arguments as Product));
             case '/base':
             default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
