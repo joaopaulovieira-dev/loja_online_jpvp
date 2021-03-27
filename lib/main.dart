@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:loja_online_jpvp/models/product.dart';
+import 'package:loja_online_jpvp/models/product_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
+import 'package:loja_online_jpvp/screens/product/product_screen.dart';
 import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -12,15 +15,23 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => UserManager(),
-      lazy: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProductManager(),
+          lazy: false,
+        )
+      ],
       child: MaterialApp(
-        title: 'Loja do João Paulo',
+        title: 'Loja do Daniel',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.blue,
-          scaffoldBackgroundColor: Colors.blue,
+          primaryColor: const Color.fromARGB(255, 4, 125, 141),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 4, 125, 141),
           appBarTheme: const AppBarTheme(elevation: 0),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
@@ -31,6 +42,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => LoginScreen());
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
+            case '/product':
+              return MaterialPageRoute(
+                  builder: (_) => ProductScreen(settings.arguments as Product));
             case '/base':
             default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
