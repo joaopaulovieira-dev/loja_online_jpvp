@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:loja_online_jpvp/models/cart_product.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/user.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 
-class CartManager {
+class CartManager extends ChangeNotifier {
   List<CartProduct> items = [];
 
   User user;
@@ -21,17 +22,46 @@ class CartManager {
   Future<void> _loadCartItems() async {
     final QuerySnapshot cartSnap = await user.cartReference.getDocuments();
 
-    items = cartSnap.documents.map((d) => CartProduct.fromDocument(d)).toList();
+    items = cartSnap.documents
+        .map((d) => CartProduct.fromDocument(d)..addListener(_onItemUpdated))
+        .toList();
   }
 
   void addToCart(Product product) {
     try {
       final e = items.firstWhere((p) => p.stackable(product));
-      e.quantity++;
+      e.increment();
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
+      cartProduct.addListener(_onItemUpdated);
       items.add(cartProduct);
-      user.cartReference.add(cartProduct.toCartItemMap());
+      user.cartReference
+          .add(cartProduct.toCartItemMap())
+          .then((doc) => cartProduct.id = doc.documentID);
     }
+    notifyListeners();
+  }
+
+  void removeOfCart(CartProduct cartProduct) {
+    items.removeWhere((p) => p.id == cartProduct.id);
+    user.cartReference.document(cartProduct.id).delete();
+    cartProduct.removeListener(_onItemUpdated);
+    notifyListeners();
+  }
+
+  void _onItemUpdated() {
+    for (final cartProduct in items) {
+      if (cartProduct.quantity == 0) {
+        removeOfCart(cartProduct);
+      }
+
+      _updateCartProduct(cartProduct);
+    }
+  }
+
+  void _updateCartProduct(CartProduct cartProduct) {
+    user.cartReference
+        .document(cartProduct.id)
+        .updateData(cartProduct.toCartItemMap());
   }
 }
