@@ -27,6 +27,7 @@ class ProductsScreen extends StatelessWidget {
                         productManager.search = search;
                       }
                     },
+                    // ignore: sized_box_for_whitespace
                     child: Container(
                         width: constraints.biggest.width,
                         child: Text(
@@ -77,6 +78,14 @@ class ProductsScreen extends StatelessWidget {
                 return ProductListTile(filteredProducts[index]);
               });
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        foregroundColor: Theme.of(context).primaryColor,
+        onPressed: () {
+          Navigator.of(context).pushNamed('/cart');
+        },
+        child: const Icon(Icons.shopping_cart),
       ),
     );
   }
