@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/models/cart_manager.dart';
+import 'package:loja_online_jpvp/models/home_manager.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/product_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
@@ -27,6 +28,10 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductManager(),
           lazy: false,
         ),
+        ChangeNotifierProvider(
+          create: (_) => HomeManager(),
+          lazy: false,
+        ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
@@ -35,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Loja do Daniel',
+        title: 'Loja do João Paulo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
