@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/common/custom_drawer/custom_drawer_header.dart';
 import 'package:loja_online_jpvp/common/custom_drawer/drawer_tile.dart';
+import 'package:loja_online_jpvp/models/user_manager.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -43,6 +45,30 @@ class CustomDrawer extends StatelessWidget {
                 title: 'Lojas',
                 page: 3,
               ),
+              Consumer<UserManager>(
+                builder: (_, userManager, __) {
+                  if (userManager.adminEnabled) {
+                    return Column(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: <Widget>[
+                        const Divider(),
+                        const DrawerTile(
+                          iconData: Icons.settings,
+                          title: 'Usuários',
+                          page: 4,
+                        ),
+                        const DrawerTile(
+                          iconData: Icons.settings,
+                          title: 'Pedidos',
+                          page: 5,
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              )
             ],
           ),
         ],
