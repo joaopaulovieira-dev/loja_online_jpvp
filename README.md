@@ -1,5 +1,7 @@
 # loja_online_jpvp
 
+[![wakatime](https://wakatime.com/badge/github/joaopaulovieira-dev/loja_online_jpvp.svg)](https://wakatime.com/badge/github/joaopaulovieira-dev/loja_online_jpvp)
+
 Loja Online em Flutter 18/03/2021.
 ...
 ## Getting Started
