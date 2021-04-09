@@ -14,8 +14,14 @@ class ImagesForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<List<dynamic>>(
-      initialValue: product.images,
+      initialValue: List.from(product.images),
       builder: (state) {
+        void onImageSelected(File file) {
+          state.value.add(file);
+          state.didChange(state.value);
+          Navigator.of(context).pop();
+        }
+
         return AspectRatio(
           aspectRatio: 1,
           child: Carousel(
@@ -36,8 +42,8 @@ class ImagesForm extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      icon: const Icon(Icons.image_not_supported_rounded),
-                      color: Colors.redAccent,
+                      icon: const Icon(Icons.remove),
+                      color: Colors.red,
                       onPressed: () {
                         state.value.remove(image);
                         state.didChange(state.value);
@@ -56,10 +62,16 @@ class ImagesForm extends StatelessWidget {
                   onPressed: () {
                     if (Platform.isAndroid) {
                       showModalBottomSheet(
-                          context: context, builder: (_) => ImageSourceSheet());
+                          context: context,
+                          builder: (_) => ImageSourceSheet(
+                                onImageSelected: onImageSelected,
+                              ));
                     } else {
                       showCupertinoModalPopup(
-                          context: context, builder: (_) => ImageSourceSheet());
+                          context: context,
+                          builder: (_) => ImageSourceSheet(
+                                onImageSelected: onImageSelected,
+                              ));
                     }
                   },
                 ),
