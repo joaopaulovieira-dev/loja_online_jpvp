@@ -2,6 +2,9 @@
 
 [![wakatime](https://wakatime.com/badge/github/joaopaulovieira-dev/loja_online_jpvp.svg)](https://wakatime.com/badge/github/joaopaulovieira-dev/loja_online_jpvp)
 
+[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
+
+
 Loja Online em Flutter 18/03/2021.
 ...
 ## Getting Started
