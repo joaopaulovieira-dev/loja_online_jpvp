@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/screens/edit_product/components/images_form.dart';
+import 'package:loja_online_jpvp/screens/edit_product/components/sizes_form.dart';
 
 class EditProductScreen extends StatelessWidget {
   EditProductScreen(this.product);
@@ -79,6 +80,7 @@ class EditProductScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizesForm(product),
                   // ignore: deprecated_member_use
                   RaisedButton(
                     onPressed: () {
