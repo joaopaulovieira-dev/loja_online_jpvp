@@ -22,7 +22,7 @@ class SizesForm extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Expanded(
+                const Expanded(
                   child: Text(
                     'Tamanhos',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
