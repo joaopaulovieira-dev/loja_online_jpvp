@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/models/product.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:loja_online_jpvp/screens/edit_product/components/image_source_sheet.dart';
 
 class ImagesForm extends StatelessWidget {
@@ -14,7 +14,7 @@ class ImagesForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<List<dynamic>>(
-      initialValue: List.from(product.images),
+      initialValue: product.images,
       validator: (images) {
         if (images.isEmpty) return 'Insira ao menos uma imagem';
         return null;
@@ -48,7 +48,7 @@ class ImagesForm extends StatelessWidget {
                       Align(
                         alignment: Alignment.topRight,
                         child: IconButton(
-                          icon: const Icon(Icons.remove),
+                          icon: Icon(Icons.remove),
                           color: Colors.red,
                           onPressed: () {
                             state.value.remove(image);
@@ -62,23 +62,22 @@ class ImagesForm extends StatelessWidget {
                   ..add(Material(
                     color: Colors.grey[100],
                     child: IconButton(
-                      icon: const Icon(Icons.add_a_photo),
+                      icon: Icon(Icons.add_a_photo),
                       color: Theme.of(context).primaryColor,
                       iconSize: 50,
                       onPressed: () {
-                        if (Platform.isAndroid) {
+                        if (Platform.isAndroid)
                           showModalBottomSheet(
                               context: context,
                               builder: (_) => ImageSourceSheet(
                                     onImageSelected: onImageSelected,
                                   ));
-                        } else {
+                        else
                           showCupertinoModalPopup(
                               context: context,
                               builder: (_) => ImageSourceSheet(
                                     onImageSelected: onImageSelected,
                                   ));
-                        }
                       },
                     ),
                   )),

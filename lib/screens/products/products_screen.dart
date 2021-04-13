@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/common/custom_drawer/custom_drawer.dart';
 import 'package:loja_online_jpvp/models/product_manager.dart';
+import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/products/components/product_list_tile.dart';
 import 'package:loja_online_jpvp/screens/products/components/search_dialog.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,6 @@ class ProductsScreen extends StatelessWidget {
                         productManager.search = search;
                       }
                     },
-                    // ignore: sized_box_for_whitespace
                     child: Container(
                         width: constraints.biggest.width,
                         child: Text(
@@ -46,7 +46,7 @@ class ProductsScreen extends StatelessWidget {
             builder: (_, productManager, __) {
               if (productManager.search.isEmpty) {
                 return IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: Icon(Icons.search),
                   onPressed: () async {
                     final search = await showDialog<String>(
                         context: context,
@@ -58,11 +58,27 @@ class ProductsScreen extends StatelessWidget {
                 );
               } else {
                 return IconButton(
-                  icon: const Icon(Icons.close),
+                  icon: Icon(Icons.close),
                   onPressed: () async {
                     productManager.search = '';
                   },
                 );
+              }
+            },
+          ),
+          Consumer<UserManager>(
+            builder: (_, userManager, __) {
+              if (userManager.adminEnabled) {
+                return IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      '/edit_product',
+                    );
+                  },
+                );
+              } else {
+                return Container();
               }
             },
           )
@@ -85,7 +101,7 @@ class ProductsScreen extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed('/cart');
         },
-        child: const Icon(Icons.shopping_cart),
+        child: Icon(Icons.shopping_cart),
       ),
     );
   }

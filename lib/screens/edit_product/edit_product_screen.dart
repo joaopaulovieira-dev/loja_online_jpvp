@@ -4,9 +4,12 @@ import 'package:loja_online_jpvp/screens/edit_product/components/images_form.dar
 import 'package:loja_online_jpvp/screens/edit_product/components/sizes_form.dart';
 
 class EditProductScreen extends StatelessWidget {
-  EditProductScreen(this.product);
+  EditProductScreen(Product p)
+      : editing = p != null,
+        product = p != null ? p.clone() : Product();
 
   final Product product;
+  final bool editing;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -16,7 +19,7 @@ class EditProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Anúncio'),
+        title: Text(editing ? 'Editar Anúncio' : 'Criar Anúncio'),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -36,8 +39,7 @@ class EditProductScreen extends StatelessWidget {
                       hintText: 'Título',
                       border: InputBorder.none,
                     ),
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     validator: (name) {
                       if (name.length < 6) return 'Título muito curto';
                       return null;
@@ -61,8 +63,8 @@ class EditProductScreen extends StatelessWidget {
                       color: primaryColor,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
                     child: Text(
                       'Descrição',
                       style:
@@ -81,14 +83,25 @@ class EditProductScreen extends StatelessWidget {
                     },
                   ),
                   SizesForm(product),
-                  // ignore: deprecated_member_use
-                  RaisedButton(
-                    onPressed: () {
-                      if (formKey.currentState.validate()) {
-                        debugPrint('válido!!!');
-                      }
-                    },
-                    child: const Text('Salvar'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 44,
+                    child: RaisedButton(
+                      onPressed: () {
+                        if (formKey.currentState.validate()) {
+                          print('válido!!!');
+                        }
+                      },
+                      textColor: Colors.white,
+                      color: primaryColor,
+                      disabledColor: primaryColor.withAlpha(100),
+                      child: const Text(
+                        'Salvar',
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                    ),
                   ),
                 ],
               ),
