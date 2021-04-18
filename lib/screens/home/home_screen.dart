@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/common/custom_drawer/custom_drawer.dart';
 import 'package:loja_online_jpvp/models/home_manager.dart';
+import 'package:loja_online_jpvp/models/user_manager.dart';
+import 'package:loja_online_jpvp/screens/home/components/add_section_widget.dart';
 import 'package:loja_online_jpvp/screens/home/components/section_list.dart';
 import 'package:loja_online_jpvp/screens/home/components/section_staggered.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +16,8 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
+                // ignore: unnecessary_const
+                gradient: LinearGradient(colors: const [
               Color.fromARGB(255, 211, 118, 130),
               Color.fromARGB(255, 253, 181, 168)
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
@@ -36,6 +39,38 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.white,
                     onPressed: () => Navigator.of(context).pushNamed('/cart'),
                   ),
+                  Consumer2<UserManager, HomeManager>(
+                    builder: (_, userManager, homeManager, __) {
+                      if (userManager.adminEnabled) {
+                        if (homeManager.editing) {
+                          return PopupMenuButton(
+                            onSelected: (e) {
+                              if (e == 'Salvar') {
+                                homeManager.saveEditing();
+                              } else {
+                                homeManager.discardEditing();
+                              }
+                            },
+                            itemBuilder: (_) {
+                              return ['Salvar', 'Descartar'].map((e) {
+                                return PopupMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                );
+                              }).toList();
+                            },
+                          );
+                        } else {
+                          return IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: homeManager.enterEditing,
+                          );
+                        }
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
                 ],
               ),
               Consumer<HomeManager>(
@@ -51,6 +86,10 @@ class HomeScreen extends StatelessWidget {
                         return Container();
                     }
                   }).toList();
+
+                  if (homeManager.editing) {
+                    children.add(AddSectionWidget(homeManager));
+                  }
 
                   return SliverList(
                     delegate: SliverChildListDelegate(children),
