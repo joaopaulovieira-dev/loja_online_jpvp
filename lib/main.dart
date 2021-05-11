@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Loja do Daniel',
+        title: 'Loja do João Paulo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
@@ -84,3 +84,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// TODO: Reordenar as seções da Home Page semelhante a tela do produto.
