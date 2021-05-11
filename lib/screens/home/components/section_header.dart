@@ -1,23 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:loja_online_jpvp/common/custom_icon_button.dart';
+import 'package:loja_online_jpvp/models/home_manager.dart';
 import 'package:loja_online_jpvp/models/section.dart';
+import 'package:provider/provider.dart';
 
 class SectionHeader extends StatelessWidget {
-  const SectionHeader(this.section);
-
-  final Section section;
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        section.name,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w800,
-          fontSize: 18,
+    final homeManager = context.watch<HomeManager>();
+    final section = context.watch<Section>();
+
+    if (homeManager.editing) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  initialValue: section.name,
+                  decoration: const InputDecoration(
+                      hintText: 'Título',
+                      isDense: true,
+                      border: InputBorder.none),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 18,
+                  ),
+                  onChanged: (text) => section.name = text,
+                ),
+              ),
+              CustomIconButton(
+                iconData: Icons.remove,
+                color: Colors.white,
+                onTap: () {
+                  homeManager.removeSection(section);
+                },
+              ),
+            ],
+          ),
+          if (section.error != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                section.error,
+                style: const TextStyle(color: Colors.red),
+              ),
+            )
+        ],
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(
+          section.name ?? "Banana",
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 18,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

@@ -16,7 +16,7 @@ class CustomDrawerHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               const Text(
-                'Loja do\nDaniel',
+                'Loja do\nJoão Paulo',
                 style: TextStyle(
                   fontSize: 34,
                   fontWeight: FontWeight.bold,
