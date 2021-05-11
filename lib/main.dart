@@ -10,6 +10,7 @@ import 'package:loja_online_jpvp/screens/cart/cart_screen.dart';
 import 'package:loja_online_jpvp/screens/edit_product/edit_product_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
 import 'package:loja_online_jpvp/screens/product/product_screen.dart';
+import 'package:loja_online_jpvp/screens/select_product/select_product_screen.dart';
 import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Loja do João Paulo',
+        title: 'Loja do Daniel',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
@@ -72,6 +73,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (_) =>
                       EditProductScreen(settings.arguments as Product));
+            case '/select_product':
+              return MaterialPageRoute(builder: (_) => SelectProductScreen());
             case '/base':
             default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
