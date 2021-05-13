@@ -13,10 +13,13 @@ import 'package:loja_online_jpvp/screens/login/login_screen.dart';
 import 'package:loja_online_jpvp/screens/product/product_screen.dart';
 import 'package:loja_online_jpvp/screens/select_product/select_product_screen.dart';
 import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
+import 'package:loja_online_jpvp/services/cepaberto_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
+
+  CepAbertoService().getAddressFromCep('13.087-000');
 }
 
 class MyApp extends StatelessWidget {
