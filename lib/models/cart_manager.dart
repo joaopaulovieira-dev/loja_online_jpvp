@@ -2,11 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loja_online_jpvp/models/address.dart';
 import 'package:loja_online_jpvp/models/cart_product.dart';
-import 'package:loja_online_jpvp/models/cepaberto_address.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/user.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
-import 'package:loja_online_jpvp/screens/address/address_screen.dart';
 import 'package:loja_online_jpvp/services/cepaberto_service.dart';
 
 class CartManager extends ChangeNotifier {
@@ -114,5 +112,10 @@ class CartManager extends ChangeNotifier {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  void removeAddress() {
+    address = null;
+    notifyListeners();
   }
 }
