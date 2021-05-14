@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loja_online_jpvp/models/cart_product.dart';
+import 'package:loja_online_jpvp/models/cepaberto_address.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/user.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
+import 'package:loja_online_jpvp/services/cepaberto_service.dart';
 
 class CartManager extends ChangeNotifier {
   List<CartProduct> items = [];
@@ -69,7 +71,6 @@ class CartManager extends ChangeNotifier {
       _updateCartProduct(cartProduct);
     }
 
-    // ignore: avoid_print
     notifyListeners();
   }
 
@@ -86,5 +87,20 @@ class CartManager extends ChangeNotifier {
       if (!cartProduct.hasStock) return false;
     }
     return true;
+  }
+
+  // ADDRESS
+
+  Future<void> getAddress(String cep) async {
+    final cepAbertoService = CepAbertoService();
+
+    try {
+      final address = await cepAbertoService.getAddressFromCep(cep);
+
+      // ignore: avoid_print
+      print(address);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

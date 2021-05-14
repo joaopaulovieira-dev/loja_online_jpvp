@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   alphabet_list_scroll_view: ^1.0.6
+  brasil_fields: ^0.1.0
   carousel_pro: ^1.0.0
   cloud_firestore: ^0.13.6
 

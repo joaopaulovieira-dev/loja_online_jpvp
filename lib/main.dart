@@ -18,8 +18,6 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
-
-  CepAbertoService().getAddressFromCep('13.087-000');
 }
 
 class MyApp extends StatelessWidget {
