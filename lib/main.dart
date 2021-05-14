@@ -5,6 +5,7 @@ import 'package:loja_online_jpvp/models/home_manager.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/product_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
+import 'package:loja_online_jpvp/screens/address/address_screen.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/cart/cart_screen.dart';
 import 'package:loja_online_jpvp/screens/edit_product/edit_product_screen.dart';
@@ -12,6 +13,7 @@ import 'package:loja_online_jpvp/screens/login/login_screen.dart';
 import 'package:loja_online_jpvp/screens/product/product_screen.dart';
 import 'package:loja_online_jpvp/screens/select_product/select_product_screen.dart';
 import 'package:loja_online_jpvp/screens/signup/signup_screen.dart';
+import 'package:loja_online_jpvp/services/cepaberto_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Loja do João Paulo',
+        title: 'Loja do Daniel',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
@@ -69,6 +71,8 @@ class MyApp extends StatelessWidget {
                   builder: (_) => ProductScreen(settings.arguments as Product));
             case '/cart':
               return MaterialPageRoute(builder: (_) => CartScreen());
+            case '/address':
+              return MaterialPageRoute(builder: (_) => AddressScreen());
             case '/edit_product':
               return MaterialPageRoute(
                   builder: (_) =>
@@ -84,5 +88,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// TODO: Reordenar as seções da Home Page semelhante a tela do produto.
