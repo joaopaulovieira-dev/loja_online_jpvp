@@ -8,6 +8,7 @@ import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/address/address_screen.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/cart/cart_screen.dart';
+import 'package:loja_online_jpvp/screens/checkout/checkout_screen.dart';
 import 'package:loja_online_jpvp/screens/edit_product/edit_product_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
 import 'package:loja_online_jpvp/screens/product/product_screen.dart';
@@ -72,6 +73,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => CartScreen());
             case '/address':
               return MaterialPageRoute(builder: (_) => AddressScreen());
+            case '/checkout':
+              return MaterialPageRoute(builder: (_) => CheckoutScreen());
             case '/edit_product':
               return MaterialPageRoute(
                   builder: (_) =>
