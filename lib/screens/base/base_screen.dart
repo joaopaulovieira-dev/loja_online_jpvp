@@ -4,6 +4,7 @@ import 'package:loja_online_jpvp/models/page_manager.dart';
 import 'package:loja_online_jpvp/models/user_manager.dart';
 import 'package:loja_online_jpvp/screens/admin_users/admin_users_screen.dart';
 import 'package:loja_online_jpvp/screens/home/home_screen.dart';
+import 'package:loja_online_jpvp/screens/orders/orders_screen.dart';
 import 'package:loja_online_jpvp/screens/products/products_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -27,12 +28,7 @@ class _BaseScreenState extends State<BaseScreen> {
             children: <Widget>[
               HomeScreen(),
               ProductsScreen(),
-              Scaffold(
-                drawer: CustomDrawer(),
-                appBar: AppBar(
-                  title: const Text('Home3'),
-                ),
-              ),
+              OrdersScreen(),
               Scaffold(
                 drawer: CustomDrawer(),
                 appBar: AppBar(
