@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_online_jpvp/models/admin_users_manager.dart';
 import 'package:loja_online_jpvp/models/cart_manager.dart';
 import 'package:loja_online_jpvp/models/home_manager.dart';
+import 'package:loja_online_jpvp/models/order.dart';
 import 'package:loja_online_jpvp/models/orders_manager.dart';
 import 'package:loja_online_jpvp/models/product.dart';
 import 'package:loja_online_jpvp/models/product_manager.dart';
@@ -10,6 +11,7 @@ import 'package:loja_online_jpvp/screens/address/address_screen.dart';
 import 'package:loja_online_jpvp/screens/base/base_screen.dart';
 import 'package:loja_online_jpvp/screens/cart/cart_screen.dart';
 import 'package:loja_online_jpvp/screens/checkout/checkout_screen.dart';
+import 'package:loja_online_jpvp/screens/confirmation/confirmation_screen.dart';
 import 'package:loja_online_jpvp/screens/edit_product/edit_product_screen.dart';
 import 'package:loja_online_jpvp/screens/login/login_screen.dart';
 import 'package:loja_online_jpvp/screens/product/product_screen.dart';
@@ -89,6 +91,10 @@ class MyApp extends StatelessWidget {
                       EditProductScreen(settings.arguments as Product));
             case '/select_product':
               return MaterialPageRoute(builder: (_) => SelectProductScreen());
+            case '/confirmation':
+              return MaterialPageRoute(
+                  builder: (_) =>
+                      ConfirmationScreen(settings.arguments as Order));
             case '/base':
             default:
               return MaterialPageRoute(
@@ -99,3 +105,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// TODO: Customizar a página de confirmação de pedido: lib/screens/confirmation/confirmation_screen.dart
+// TODO: Configurar a opção de reset de senha.
+// TODO: Adicionar mais formas de pagamento.
