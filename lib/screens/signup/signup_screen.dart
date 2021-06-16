@@ -53,7 +53,9 @@ class SignUpScreen extends StatelessWidget {
                       validator: (email) {
                         if (email.isEmpty) {
                           return 'Campo obrigatório';
-                        } else if (!emailValid(email)) return 'E-mail inválido';
+                        } else if (!emailValid(email)) {
+                          return 'E-mail inválido';
+                        }
                         return null;
                       },
                       onSaved: (email) => user.email = email,
@@ -68,7 +70,9 @@ class SignUpScreen extends StatelessWidget {
                       validator: (pass) {
                         if (pass.isEmpty) {
                           return 'Campo obrigatório';
-                        } else if (pass.length < 6) return 'Senha muito curta';
+                        } else if (pass.length < 6) {
+                          return 'Senha muito curta';
+                        }
                         return null;
                       },
                       onSaved: (pass) => user.password = pass,
@@ -84,7 +88,9 @@ class SignUpScreen extends StatelessWidget {
                       validator: (pass) {
                         if (pass.isEmpty) {
                           return 'Campo obrigatório';
-                        } else if (pass.length < 6) return 'Senha muito curta';
+                        } else if (pass.length < 6) {
+                          return 'Senha muito curta';
+                        }
                         return null;
                       },
                       onSaved: (pass) => user.confirmPassword = pass,
@@ -107,6 +113,7 @@ class SignUpScreen extends StatelessWidget {
                                   formKey.currentState.save();
 
                                   if (user.password != user.confirmPassword) {
+                                    // ignore: deprecated_member_use
                                     scaffoldKey.currentState
                                         // ignore: deprecated_member_use
                                         .showSnackBar(const SnackBar(
@@ -122,6 +129,7 @@ class SignUpScreen extends StatelessWidget {
                                         Navigator.of(context).pop();
                                       },
                                       onFail: (e) {
+                                        // ignore: deprecated_member_use
                                         scaffoldKey.currentState
                                             // ignore: deprecated_member_use
                                             .showSnackBar(SnackBar(
