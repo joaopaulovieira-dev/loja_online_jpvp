@@ -63,7 +63,7 @@ class OrderTile extends StatelessWidget {
                 children: <Widget>[
                   // ignore: deprecated_member_use
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: order.cancel,
                     textColor: Colors.red,
                     child: const Text('Cancelar'),
                   ),

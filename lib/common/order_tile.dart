@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:loja_online_jpvp/common/order/order_product_tile.dart';
 import 'package:loja_online_jpvp/models/order.dart';
-import 'package:loja_online_jpvp/screens/cart/components/order_product_tile.dart';
 
 class OrderTile extends StatelessWidget {
-  const OrderTile(this.order);
+  const OrderTile(this.order, {this.showControls = false});
 
   final Order order;
+  final bool showControls;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,38 @@ class OrderTile extends StatelessWidget {
             children: order.items.map((e) {
               return OrderProductTile(e);
             }).toList(),
-          )
+          ),
+          if (showControls && order.status != Status.canceled)
+            SizedBox(
+              height: 50,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                    onPressed: order.cancel,
+                    textColor: Colors.red,
+                    child: const Text('Cancelar'),
+                  ),
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                    onPressed: order.back,
+                    child: const Text('Recuar'),
+                  ),
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                    onPressed: order.advance,
+                    child: const Text('Avançar'),
+                  ),
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                    onPressed: () {},
+                    textColor: primaryColor,
+                    child: const Text('Endereço'),
+                  )
+                ],
+              ),
+            )
         ],
       ),
     );
